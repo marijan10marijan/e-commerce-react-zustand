@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.arrows {
+  color: rgb(30 41 59);
+  cursor: pointer;
+}
+
+.arrow-left {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0px;
+  font-size: 1.8rem;
+  z-index: 10;
+}
+.arrow-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0px;
+  font-size: 1.8rem;
+  z-index: 10;
+}
+
+.ink-container {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+.ink-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("./images/background.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+  mask-image: url("./images/animationInk.gif");
+  mask-size: cover;
+  mask-position: center;
+}
+.ink-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+.ink-content {
+  color: white;
+  text-align: center;
+  padding-block-end: 20px;
+}
+.ink-content h2 {
+  font-size: 3.5rem;
+  font-weight: 700;
+}
+.ink-content p {
+  width: min(420px, 90%);
+  margin-inline: auto;
+}
