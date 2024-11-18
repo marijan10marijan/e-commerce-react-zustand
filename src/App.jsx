@@ -9,10 +9,7 @@ import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
   return (
-    <Router
-      future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
-      basename="/e-commerce-react-zustand"
-    >
+    <Router basename="/e-commerce-react-zustand">
       <ScrollToTop />
       <Navbar />
 
