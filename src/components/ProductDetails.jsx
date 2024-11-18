@@ -1,61 +1,69 @@
 import React, { useState } from "react";
-
-import { useParams } from "react-router-dom";
-import { products } from "../data/products"; // Import tvojih proizvoda
+import { useParams, useNavigate } from "react-router-dom"; // Use useNavigate to redirect
+import { products } from "../data/products"; // Import your products data
 import { useStore } from "../store";
 import SimilarProducts from "./SimilarProducts";
 
 const ProductPage = () => {
-  const { id } = useParams(); // ID sada dolazi kao UUID
-  const product = products.find((p) => p.id === id); // Pronalaženje proizvoda prema UUID-u
+  const { id } = useParams(); // ID now comes as UUID
+  const navigate = useNavigate(); // To programmatically navigate if needed
+  const product = products.find((p) => p.id === id); // Find product by UUID
   const addToCart = useStore((state) => state.addToCart);
 
-  // Stanje za odabranu količinu
   const [quantity, setQuantity] = useState(1);
-
-  // Stanje za obavijest
   const [notification, setNotification] = useState("");
 
   const handleAddToCart = () => {
-    // Dodajemo proizvod s odabranom količinom u košaricu
     addToCart(product, quantity);
-
-    // Postavi obavijest da je proizvod dodan u košaricu
     setNotification(`Added ${product.title} to cart!`);
 
-    // Ukloni obavijest nakon 3 sekunde
     setTimeout(() => {
       setNotification("");
     }, 3000);
   };
 
+  // Handle product not found
+  if (!product) {
+    return (
+      <div className="container mx-auto py-6 min-h-[calc(100vh-192px)] px-4">
+        <h1 className="text-2xl font-bold">Product Not Found</h1>
+        <button
+          onClick={() => navigate("/")} // Navigate back to homepage or products list
+          className="bg-slate-800 text-white px-4 py-2 mt-4 rounded-md font-bold"
+        >
+          Back to Home
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="container mx-auto py-6  md:w-3/4">
       <div className="flex flex-col sm:flex-row gap-6 items-center relative">
-        {/* Slika proizvoda */}
+        {/* Product image */}
         <img
           src={product.image}
           alt={product.title}
           className="flex-1 max-w-96 w-full min-h-80 h-auto object-cover"
         />
 
-        {/* Podaci o proizvodu */}
+        {/* Product details */}
         <div className="ml-6 flex-1">
           <h1 className="text-2xl font-bold mb-4">{product.title}</h1>
           <h1 className="text-sm mb-4 text-gray-700 w-3/4">
             {product.description}
           </h1>
-          <p className="mb-4  ">
+          <p className="mb-4">
             Size: <span className="text-xl font-semibold">{product.size}</span>
           </p>
           <p className="text-gray-700 mt-auto text-2xl font-bold mb-4">
             ${Math.floor(product.price)}
-            <sup className="text-sm align-middle  font-semibold">
+            <sup className="text-sm align-middle font-semibold">
               {(product.price % 1).toFixed(2).split(".")[1]}
             </sup>
           </p>
 
-          {/* Odabir količine */}
+          {/* Quantity selection */}
           <label htmlFor="quantity" className="block mb-2">
             Quantity:
           </label>
@@ -68,8 +76,6 @@ const ProductPage = () => {
               onChange={(e) => setQuantity(parseInt(e.target.value))}
               className="border p-2 w-20"
             />
-
-            {/* Dugme za dodavanje u košaricu */}
             <button
               onClick={handleAddToCart}
               className="bg-slate-800 text-white px-4 py-2"
@@ -78,7 +84,6 @@ const ProductPage = () => {
             </button>
           </div>
 
-          {/* Obavijest o dodavanju u košaricu */}
           {notification && (
             <div className="absolute z-10 -bottom-8 left-2 sm:left-auto sm:bottom-4 sm:right-4 mt-4 p-2 font-semibold rounded-md bg-green-100 border border-green-400 text-green-700">
               {notification}
