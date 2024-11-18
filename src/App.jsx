@@ -5,10 +5,12 @@ import ProductList from "./components/ProductList";
 import Cart from "./components/Cart";
 import ProductPage from "./components/ProductDetails";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
   return (
     <Router future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
+      <ScrollToTop />
       <Navbar />
 
       <div className="max-w-7xl mx-auto flex gap-6 w-full">

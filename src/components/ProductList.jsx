@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { products } from "../data/products";
 import { useStore } from "../store";
@@ -11,6 +11,10 @@ const ProductList = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const filters = useStore((state) => state.filters);
   const searchTerm = useProductStore((state) => state.searchTerm);
+
+  useEffect(() => {
+    setCurrentPage(1); // Restartiranje da se paginacija vrati na prvu stranicu
+  }, [filters, searchTerm]);
 
   // Filtriraj proizvode na temelju filtera
   const filteredProducts = products.filter((product) => {

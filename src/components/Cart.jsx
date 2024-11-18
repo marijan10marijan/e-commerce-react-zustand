@@ -58,7 +58,12 @@ const Cart = () => {
             />
             <div>
               <h3 className="text-lg font-bold">{item.title}</h3>
-              <p>${item.price}</p>
+              <p className="text-gray-700 mt-auto text-xl font-bold">
+                ${Math.floor(item.price)}
+                <sup className="text-sm align-middle  font-semibold">
+                  {(item.price % 1).toFixed(2).split(".")[1]}
+                </sup>
+              </p>
               <input
                 type="number"
                 value={item.quantity}
@@ -79,7 +84,15 @@ const Cart = () => {
 
       {/* Prikaz ukupne cijene */}
       <div className="text-right">
-        <h2 className="text-2xl font-bold">Total: ${totalPrice.toFixed(2)}</h2>
+        <h2 className="text-2xl font-bold inline-block">
+          Total: $
+          <span className="text-2xl font-bold">
+            {Math.floor(totalPrice).toLocaleString("de-DE")}
+          </span>
+          <sup className="text-sm align-top font-semibold">
+            {totalPrice.toFixed(2).split(".")[1]}
+          </sup>
+        </h2>
       </div>
     </div>
   );

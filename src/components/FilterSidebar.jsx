@@ -55,6 +55,7 @@ const FilterSidebar = ({ setIsSidebarOpen }) => {
       <div className="mb-4">
         <h3 className="font-semibold">Gender</h3>
         <select
+          value={filters.gender || ""}
           onChange={(e) => setFilter("gender", e.target.value)}
           className="border p-1 w-full rounded-md"
         >
@@ -69,6 +70,7 @@ const FilterSidebar = ({ setIsSidebarOpen }) => {
       <div className="mb-4">
         <h3 className="font-semibold">Size</h3>
         <select
+          value={filters.size || ""}
           onChange={(e) => setFilter("size", e.target.value)}
           className="border p-1 w-full rounded-md"
         >
@@ -84,6 +86,7 @@ const FilterSidebar = ({ setIsSidebarOpen }) => {
       <div className="mb-4">
         <h3 className="font-semibold">Brand</h3>
         <input
+          value={filters.brand || ""}
           type="text"
           placeholder="Enter brand"
           onChange={(e) => setFilter("brand", e.target.value)}
@@ -95,6 +98,7 @@ const FilterSidebar = ({ setIsSidebarOpen }) => {
       <div className="mb-4">
         <h3 className="font-semibold">Color</h3>
         <input
+          value={filters.color || ""}
           type="text"
           placeholder="Enter color"
           onChange={(e) => setFilter("color", e.target.value)}
