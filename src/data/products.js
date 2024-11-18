@@ -71,19 +71,7 @@ export const products = [
     color: "blue",
     bestSelling: true,
   },
-  {
-    id: uuidv4(),
-    title: "Funny Jeans",
-    description:
-      "Comfortable jeans for men made with love, perfect for everyday wear.",
-    price: 18.59,
-    image: menJeans2,
-    gender: "male",
-    size: "L",
-    brand: "JeanWear",
-    color: "blue",
-    bestSelling: false,
-  },
+
   {
     id: uuidv4(),
     title: "Everyday Shirt",

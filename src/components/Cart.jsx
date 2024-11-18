@@ -38,7 +38,7 @@ const Cart = () => {
   }
 
   return (
-    <div className="container mx-auto py-6 mb-12 px-4 min-h-[calc(100vh-264px)]">
+    <div className="container mx-auto py-6 mb-12 px-4 min-h-[calc(100vh-240px)]">
       <button
         onClick={clearCart}
         className="bg-red-500 text-white px-4 py-2 mb-4 font-bold rounded-md"
